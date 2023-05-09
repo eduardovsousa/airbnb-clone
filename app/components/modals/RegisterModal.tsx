@@ -66,9 +66,9 @@ const RegisterModal = () => {
         required
       />
       <Input
-        id="senha"
+        id="password"
         type="password"
-        label="Senha"
+        label="password"
         disabled={isLoading}
         register={register}
         errors={errors}
@@ -111,7 +111,7 @@ const RegisterModal = () => {
       <Modal
         disabled={isLoading}
         isOpen={registerModal.isOpen}
-        title="Register"
+        title="Cadastrar-se"
         actionLabel="Continue"
         onClose={registerModal.onClose}
         onSubmit={handleSubmit(onSubmit)}
