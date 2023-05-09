@@ -14,8 +14,10 @@ import Modal from "./Modal";
 import Heading from "../Heading";
 import Input from "../inputs/Input";
 import Button from "../Button";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal = () => {
+  const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -46,6 +48,11 @@ const RegisterModal = () => {
         setIsLoading(false);
       });
   };
+
+  const onToggle = useCallback(() => {
+    registerModal.onClose();
+    loginModal.onOpen();
+  }, [loginModal, registerModal])
 
   const bodyContent = (
     <div className="flex flex-col gap-4">
@@ -97,7 +104,7 @@ const RegisterModal = () => {
         <div className="flex flex-row justify-center items-center gap-2">
           <div className="">Já possui uma conta?</div>
           <div
-            onClick={registerModal.onClose}
+            onClick={onToggle}
             className="text-neutral-800 cursor-pointer hover:underline"
           >
             Faça login
