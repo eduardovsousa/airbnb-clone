@@ -1,5 +1,6 @@
-'use client';
+"use client";
 
+import { useRouter } from "next/navigation";
 import { useCallback, useState } from "react";
 import { signOut } from "next-auth/react";
 import { AiOutlineMenu } from "react-icons/ai";
@@ -16,6 +17,7 @@ interface UserMenuProps {
 }
 
 const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
+  const router = useRouter();
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
   const rentModal = useRentModal();
@@ -93,11 +95,17 @@ const UserMenu: React.FC<UserMenuProps> = ({ currentUser }) => {
           <div className="flex flex-col cursor-pointer">
             {currentUser ? (
               <>
-                <MenuItem onClick={() => {}} label="Viagens" />
+                <MenuItem
+                  onClick={() => router.push("/trips")}
+                  label="Viagens"
+                />
                 <MenuItem onClick={() => {}} label="Favoritos" />
                 <MenuItem onClick={() => {}} label="Reservas" />
                 <MenuItem onClick={() => {}} label="Propriedades" />
-                <MenuItem onClick={rentModal.onOpen} label="Minha casa Airbnb" />
+                <MenuItem
+                  onClick={rentModal.onOpen}
+                  label="Minha casa Airbnb"
+                />
                 <hr />
                 <MenuItem onClick={() => signOut()} label="Sair" />
               </>

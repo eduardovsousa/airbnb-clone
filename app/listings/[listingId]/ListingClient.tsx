@@ -71,8 +71,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
     .then(() => {
       toast.success('Adicionado a lista!');
       setDateRange(initialDateRange);
-      //Redirecionando para /trips
-      router.refresh();
+      router.push('/trips');
     })
     .catch(() => {
       toast.error('Ops... Algo deu errado');
@@ -90,7 +89,7 @@ const ListingClient: React.FC<ListingClientProps> = ({
       );
 
       if (dayCount && listing.price) {
-        setTotalPrice(dayCount * listing.price);
+        setTotalPrice((dayCount * listing.price) + listing.price);
       } else {
         setTotalPrice(listing.price);
       }
